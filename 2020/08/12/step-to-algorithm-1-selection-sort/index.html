@@ -10,9 +10,9 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="RokuHatsuke,"> 
-    <meta name="description" content="今天也是没有干劲的一天, 明天再努力吧
-作为编程的经典问题之一的排序, 放在前面也没什么不妥.
-所谓排序, 就是把一组数据(如字符, 整数, 浮点数等)按照一定的方式进行排列. 不同的排列方法所需要,"> 
+    <meta name="description" content="A personal blog,今天也是没有干劲的一天, 明天再努力吧
+所谓排序, 就是把一组数据(如字符, 整数, 浮点数等)按照一定的方式进行排列. 不同的排列方法所需要的时间/空间都有所不同, 它们都有其自身的优缺点.
+本文,"> 
     <meta name="author" content="Roku Hatsuke"> 
     <link rel="alternative" href="atom.xml" title="Roku Hatsuke&#39;s Blog" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -65,11 +65,10 @@
         </div>
         <div class="content markdown">
             <p><del>今天也是没有干劲的一天, 明天再努力吧</del></p>
-<p>作为编程的经典问题之一的排序, 放在前面也没什么不妥.</p>
 <p>所谓排序, 就是把一组数据(如字符, 整数, 浮点数等)按照一定的方式进行排列. 不同的排列方法所需要的时间/空间都有所不同, 它们都有其自身的优缺点.</p>
-<p>本文介绍的是被称为选择排序的排序算法.</p>
+<p>本文介绍的是被称为选择排序的排序算法. 需要注意的是这个算法效率十分低下, 时间复杂度达到了O(n²)! 因此建议在日常项目中使用其它方法(譬如快速排序)进行排序.</p>
 <hr>
-<p>选择排序的基本思想是把排序区域的最小数放到最前面的同时, 逐步缩小排序区域.</p>
+<p>选择排序的核心思想是把排序区域的最小数放到最前面的同时, 逐步缩小排序区域.</p>
 <p>假设我们有一个数组A, 内容为{ 3, 44, 38, 5, 47, 15, 36, 26 }, 则有其大小为8个项.</p>
 <p>刚启动排序时, 排序的范围是A[0] -&gt; A[7].</p>
 <p><strong>Step 1</strong>: 先假设第一个数, 即A[0]为最小的数, 并向后查找是否有比它更小的数(也就是一个个对比). 如果找到了, 就将找到的值设为最小的值, 否则继续查找.</p>
@@ -82,7 +81,7 @@
 <hr>
 <p>总结一下, 选择排序实际上只是在一堆未排序的元素中抽出一个最小的数放在未排序区域的最前端, 作为已排序的元素, 再从剩下未排序的元素中找出最小的数, 以此类推完成排序.</p>
 <p>以下是C++代码示例(VS2019编译通过)</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">void</span></span><br><span class="line">selection_sort</span><br><span class="line">(_In_ <span class="keyword">const</span> <span class="keyword">uint64_t</span>&amp; <span class="built_in">size</span>, _Inout_ <span class="keyword">uint64_t</span>* arr) <span class="keyword">noexcept</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">uint64_t</span> i = <span class="number">0</span>; i &lt; <span class="built_in">size</span> - <span class="number">1</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">uint64_t</span> <span class="built_in">min</span> = i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">uint64_t</span> j = i + <span class="number">1</span>; j &lt; <span class="built_in">size</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[<span class="built_in">min</span>] &gt; arr[j])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">min</span> = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        swap(&amp;arr[<span class="built_in">min</span>], &amp;arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">selection_sort</span> <span class="params">(<span class="keyword">const</span> <span class="keyword">uint64_t</span>&amp; <span class="built_in">size</span>, <span class="keyword">uint64_t</span>* arr)</span> <span class="keyword">noexcept</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">uint64_t</span> i = <span class="number">0</span>; i &lt; <span class="built_in">size</span> - <span class="number">1</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">uint64_t</span> <span class="built_in">min</span> = i;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">uint64_t</span> j = i + <span class="number">1</span>; j &lt; <span class="built_in">size</span>; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (arr[<span class="built_in">min</span>] &gt; arr[j])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="built_in">min</span> = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        swap(&amp;arr[<span class="built_in">min</span>], &amp;arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>如果你有兴趣的话, 可以用C++的模板对代码进行改良, 让它支持任意类型的排序.</p>
 
